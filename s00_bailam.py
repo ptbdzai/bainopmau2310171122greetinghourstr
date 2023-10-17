@@ -50,5 +50,22 @@ greeting('2100')             | Good evening!          | 14
 
 #region bailam
 def greeting(hour_str):
-  return 'todo'
+  import re
+  hour_str=hour_str.lower()
+  m = re.findall(r'[a-zA-Z]+',hour_str)
+  if len(m)!=0:
+    m[0]=m[0].lower()
+  hour=hour_str[0:2]
+  gio=re.findall(r'[0-9]+',hour)
+  gio[0]=int(gio[0])
+  if len(m)!=0:
+    if m[0]=='pm':
+      gio[0]+=12
+  if gio[0]<12:
+    ans='Good morning!'
+  elif gio[0]<18:
+    ans='Good afternoon!'
+  else:
+    ans='Good evening!'
+  return ans
 #endregion bailam
